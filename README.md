@@ -28,6 +28,7 @@
       flex-direction:column;
     }
 
+    /* خلفية تواكب رؤية المدرسة (المواطنة + مهارات المستقبل) بتفاصيل إلكترونية فائقة النعومة */
     body::before{
       content:"";
       position:fixed;inset:0;
@@ -62,6 +63,7 @@
       display:none;
     }
 
+    /* خلفية فنية للصورة في شاشة الترحيب بشفافية ناعمة وعصرية */
     .welcome-bg-art {
       position:absolute;
       inset:0;
@@ -114,11 +116,12 @@
     }
     @keyframes shine{0%{background-position:0% center}100%{background-position:100% center}}
 
+    /* تصميم الشعار العصري المتطور */
     .school-logo-wrap{
       display:flex;
       align-items:center;
       justify-content:center;
-      margin-bottom:14px;
+      margin-bottom:18px;
       position:relative;
       width:clamp(125px, 20vw, 165px);
       height:clamp(125px, 20vw, 165px);
@@ -167,6 +170,23 @@
       border-color:var(--neon);
     }
 
+    /* نص اسم المدرسة أسفل الشعار */
+    .logo-school-name {
+      font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+      font-weight: 800;
+      color: var(--gold-light);
+      margin-top: -6px;
+      margin-bottom: 14px;
+      text-shadow: 0 0 16px rgba(201, 162, 39, 0.45), 0 2px 4px rgba(0,0,0,0.5);
+      letter-spacing: 0.5px;
+      display: inline-block;
+      padding: 4px 18px;
+      background: rgba(11, 107, 58, 0.22);
+      border: 1px solid rgba(201, 162, 39, 0.35);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+    }
+
     .header-logo-wrap{
       display:flex;
       justify-content:center;
@@ -207,6 +227,7 @@
       border-color:var(--neon);
     }
 
+    /* كبسولة تعريفية لاسم المدرسة أسفل الشعار */
     .school-name-badge {
       display: inline-flex;
       align-items: center;
@@ -281,6 +302,19 @@
       position:relative;
       overflow:hidden;
     }
+    .enter-btn::after{
+      content:"";
+      position:absolute;
+      top:-50%;left:-50%;width:200%;height:200%;
+      background:linear-gradient(60deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform:rotate(30deg);
+      transition:0.6s;
+      opacity:0;
+    }
+    .enter-btn:hover::after{
+      opacity:1;
+      transform:rotate(30deg) translate(20%, 20%);
+    }
     .enter-btn:hover{
       transform:translateY(-3px) scale(1.03);
       box-shadow:0 0 50px rgba(0,224,198,.8), 0 14px 30px rgba(0,0,0,0.45);
@@ -347,6 +381,7 @@
       text-shadow:0 2px 8px rgba(0,0,0,0.6);
     }
 
+    /* شريط الإعلانات والتنبيهات فائق الانسيابية */
     .ticker-wrap {
       max-width: 1240px;
       width: 100%;
@@ -414,7 +449,7 @@
       100% { transform: translate3d(100%, 0, 0); }
     }
 
-    /* 3) شبكة الأيقونات التفاعلية */
+    /* 3) شبكة الأيقونات التفاعلية بتصميم كبسولات زجاجية متطورة */
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
@@ -616,6 +651,7 @@
     }
     footer strong{color:var(--gold-light)}
 
+    /* التجاوب مع أحجام الشاشات */
     @media(min-width: 1025px){
       .grid{
         grid-template-columns: repeat(4, 1fr);
@@ -699,6 +735,7 @@
     <div class="badge-tag">سلطنة عُمان | محافظة الظاهرة — ولاية عبري</div>
     <h1 class="welcome-title">أهلاً وسهلاً بكم في بوابتنا الرقمية</h1>
     
+    <!-- رسالة ترحيبية رسمية من إدارة المدرسة -->
     <div class="welcome-card-box">
       <p style="font-size:clamp(1rem, 2.5vw, 1.15rem); font-weight:800; color:var(--gold); margin-bottom:8px;">
         ✨ رسالة ترحيبية من إدارة المدرسة ✨
@@ -780,6 +817,7 @@
 
 <!-- ================= 4) JavaScript ================= -->
 <script>
+/* معالجة وتحسين الشعار */
 function handleLogoError(imgElement, context) {
   const wrap = imgElement.parentElement;
   if (!wrap) return;
@@ -806,6 +844,7 @@ function handleLogoError(imgElement, context) {
   `;
 }
 
+/* مكتبة الأيقونات المتجهية SVG الاحترافية (Modern Duotone / Neo-Glass) */
 const svgIcons = {
   vision: `
     <svg class="icon-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -957,20 +996,21 @@ const svgIcons = {
     </svg>`
 };
 
+/* بيانات الأقسام */
 const sections = [
   {iconKey:"vision", title:"الرؤية والرسالة", sub:"هويتنا وقيمنا",
    content:`
      <div style="text-align:center;padding:10px 0 20px;">
        <div style="display:inline-block;background:linear-gradient(135deg,#0B6B3A,#C9A227);color:#001a14;padding:6px 20px;border-radius:20px;font-weight:900;font-size:.9rem;margin-bottom:14px;">🎯 رؤيتنا</div>
        <p style="font-size:1.15rem;line-height:1.95;color:#e8d9a8;font-weight:700;">
-         «إِعْدَادُ جِيلٍ مَتَمَكِّنٍ مِنْ مَهَارَاتِ الْمُسْتَقْبَلِ، مُتَشَبِّعٍ بِقِيَمِ الْمُواطَنَةِ»
+         «إِعْدَادُ جِيلٍ مَتَمَكِّنٍ مِنْ مَهَارَاتِ الْمُسْتَقْبَلِ، مُتَشَبِّعٍ بِقِيَمِ الْمُواطَنَةِ»
        </p>
      </div>
      <hr style="border:none;border-top:1px solid rgba(201,162,39,.3);margin:22px 0;">
      <div style="text-align:center;padding:10px 0;">
        <div style="display:inline-block;background:linear-gradient(135deg,#00E0C6,#0B6B3A);color:#001a14;padding:6px 20px;border-radius:20px;font-weight:900;font-size:.9rem;margin-bottom:14px;">📜 رسالتنا</div>
        <p style="font-size:1rem;line-height:1.95;color:#d7e3ee;text-align:justify;">
-         نَلْتَزِمُ فِي مَدْرَسَةِ عَبَّادِ بْنِ بِشْرٍ بِجَوْدَةٍ عَالِيَةٍ فِي الْأَدَاءِ، يُعَزِّزُ الْقِيَمَ الْوَطَنِيَّةَ، وَيُرَكِّزُ عَلَى مَهَارَاتِ التَّفْكِيرِ الْإِبْدَاعِيِّ وَالتَّعَلُّمِ الذَّاتِيِّ وَالْعَمَلِ الْجَمَاعِيِّ، مِنْ خِلَالِ بِيئَةٍ شَامِلَةٍ وَآمِنَةٍ وَشَرَاكَةٍ فَعَّالَةٍ مَعَ الْمُجْتَمَعِ الْمَحَلِّيِّ، لِبِنَاءِ جِيلٍ وَاثِقٍ، مُبَادِرٍ، مُؤَهَّلٍ لِمُوَاكَبَةِ تَحَدِّيَاتِ الْمُسْتَقْبَلِ.
+         نَلْتَزِمُ فِي مَدْرَسَةِ عَبَّادِ بْنِ بِشْرٍ بِجَوْدَةٍ عَالِيَةٍ فِي الْأَدَاءِ، يُعَزِّزُ الْقِيَمَ الْوَطَنِيَّةَ، وَيُرَكِّزُ عَلَى مَهَارَاتِ التَّفْكِيرِ الْإِبْدَاعِيِّ وَالتَّعَلُّمِ الذَّاتِيِّ وَالْعَمَلِ الْجَمَاعِيِّ، مِنْ خِلَالِ بِيئَةٍ شَامِلَةٍ وَآمِنَةٍ وَشَرَاكَةٍ فَعَّالَةٍ مَعَ الْمُجْتَمَعِ الْمَحَلِّيِّ، لِبِنَاءِ جِيلٍ وَاثِقٍ، مُبَادِرٍ، مُؤَهَّلٍ لِمُوَاكَبَةِ تَحَدِّيَاتِ الْمُسْتَقْبَلِ.
        </p>
      </div>`},
 
@@ -1014,6 +1054,7 @@ const sections = [
 
   {iconKey:"schedule", title:"الجدول المدرسي", sub:"الحصص والجدول العام للمعلمين",
    content:`
+     <!-- بطاقة رابط جدول المعلمين PDF المباشر -->
      <div style="background:linear-gradient(135deg, rgba(11,107,58,0.35), rgba(0,224,198,0.15)); border:1px solid var(--neon); border-radius:14px; padding:16px; margin-bottom:18px; text-align:center;">
        <span style="font-size:2.2rem; display:block; margin-bottom:6px;">📑</span>
        <h4 style="color:var(--gold); margin-bottom:4px; font-size:1.15rem;">الجدول العام للمعلمين</h4>
@@ -1032,16 +1073,16 @@ const sections = [
 
      <h4 style="color:var(--gold); margin-bottom:10px;">⏰ توقيت الحصص واليوم الدراسي:</h4>
      <ul>
-       <li><strong>طابور الصباح:</strong> ٧:١٥ – ٧:٣٥ صباحاً</li>
+       <li><strong>طابور الصباح:</strong> ٧:٢٠ – ٧:٣٥ صباحاً</li>
        <li><strong>الحصة الأولى:</strong> ٧:٣٥ – ٨:١٥ صباحاً</li>
        <li><strong>الحصة الثانية:</strong> ٨:٢٠ – ٩:٠٠ صباحاً</li>
        <li><strong>الحصة الثالثة:</strong> ٩:٠٥ – ٩:٤٥ صباحاً</li>
-       <li><strong>استراحة الفسحة:</strong> ٩:٤٥ – ١٠:١٥ صباحاً</li>
-       <li><strong>الحصة الرابعة:</strong> ١٠:١٥ – ١٠:٥٥ صباحاً</li>
-       <li><strong>الحصة الخامسة:</strong> ١١:٠٠ – ١١:٤٠ صباحاً</li>
-       <li><strong>الحصة السادسة وصلاة الظهر:</strong> ١١:٤٥ – ١٢:٣٥ ظهراً</li>
-       <li><strong>الحصة السابعة:</strong> ١٢:٤٠ – ١:٢٠ ظهراً</li>
-       <li><strong>الحصة الثامنة وانصراف الطلبة:</strong> ١:٢٥ – ٢:٠٥ ظهراً</li>
+       <li><strong>الحصة الرابعة:</strong> ٩:٥٠ – ١٠:٣٠ صباحاً</li>
+       <li><strong>الفسحة:</strong> ١٠:٣٠ – ١٠:٥٥ صباحاً</li>
+       <li><strong>الحصة الخامسة:</strong> ١٠:٥٥ – ١١:٣٥ صباحاً</li>
+       <li><strong>الحصة السادسة :</strong> ١١:٤٠ – ١٢:٢٠ ظهراً</li>
+       <li><strong>الحصة السابعة:</strong> ١٢:٢٥ – ١:٠٥ ظهراً</li>
+       <li><strong>الحصة الثامنة :</strong> ١:١٠ – ١:٥٠ ظهراً</li>
      </ul>`},
 
   {iconKey:"gallery", title:"معرض الصور", sub:"توثيق الفعاليات المدرسية",
@@ -1075,6 +1116,7 @@ const sections = [
    content:`<p>نظام داخلي لمتابعة مؤشرات الأداء المدرسي والتحصيل الدراسي لطلبة الصفوف (٥-٩) لدعم مسيرة التميز والإتقان.</p>`},
 ];
 
+/* توليد البطاقات بأيقونات SVG فائقة العصرية */
 const grid = document.getElementById('grid');
 sections.forEach((s, i) => {
   const div = document.createElement('div');
@@ -1090,6 +1132,7 @@ sections.forEach((s, i) => {
   grid.appendChild(div);
 });
 
+/* التحكم بالنافذة المنبثقة */
 function openModal(i){
   const iconMarkup = `<span style="display:inline-block;width:34px;height:34px;vertical-align:middle;margin-left:8px;">${svgIcons[sections[i].iconKey]}</span>`;
   document.getElementById('modalTitle').innerHTML = `${iconMarkup} ${sections[i].title}`;
@@ -1108,6 +1151,7 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape') closeModal();
 });
 
+/* الدخول للمنصة (فقط عند النقر) */
 function enterPlatform(){
   const w = document.getElementById('welcome');
   const m = document.getElementById('main');
@@ -1116,6 +1160,7 @@ function enterPlatform(){
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/* الساعة والتاريخ الحي بتوقيت سلطنة عمان */
 function updateClock(){
   const dEl = document.getElementById('todayDate');
   const tEl = document.getElementById('nowTime');
@@ -1150,6 +1195,20 @@ function updateClock(){
 }
 updateClock();
 setInterval(updateClock, 1000);
+
+/* معالجة اختيار ملف خلفية الترويسة محلياً أو حفظه في الذاكرة التخزينية */
+function handleHeaderBgUpload(e) {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const bgOverlay = document.getElementById('headerBgOverlay');
+    if (bgOverlay) {
+      bgOverlay.style.backgroundImage = `url('${evt.target.result}')`;
+    }
+  };
+  reader.readAsDataURL(file);
+}
 </script>
 </body>
 </html>
