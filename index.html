@@ -170,23 +170,6 @@
       border-color:var(--neon);
     }
 
-    /* نص اسم المدرسة أسفل الشعار */
-    .logo-school-name {
-      font-size: clamp(1.1rem, 2.6vw, 1.35rem);
-      font-weight: 800;
-      color: var(--gold-light);
-      margin-top: -6px;
-      margin-bottom: 14px;
-      text-shadow: 0 0 16px rgba(201, 162, 39, 0.45), 0 2px 4px rgba(0,0,0,0.5);
-      letter-spacing: 0.5px;
-      display: inline-block;
-      padding: 4px 18px;
-      background: rgba(11, 107, 58, 0.22);
-      border: 1px solid rgba(201, 162, 39, 0.35);
-      border-radius: 20px;
-      backdrop-filter: blur(8px);
-    }
-
     .header-logo-wrap{
       display:flex;
       justify-content:center;
@@ -590,6 +573,10 @@
       padding:clamp(22px, 4vw, 34px);
       box-shadow:0 30px 80px rgba(0,224,198,.35), 0 10px 40px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.25);
       position:relative;
+      transition: max-width 0.3s ease;
+    }
+    .modal.wide-modal {
+      max-width: 980px;
     }
     .modal h2{
       color:var(--gold-light);
@@ -636,6 +623,71 @@
     .btn-link:hover{
       transform:translateY(-2px) scale(1.04);
       box-shadow:0 6px 25px rgba(0,224,198,0.55);
+    }
+
+    /* تخطيط الجدول المدرسي المتجاور (الجدول يميناً والتوقيت يساراً ثابتاً) */
+    .schedule-split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 20px;
+      align-items: start;
+      margin-top: 8px;
+    }
+    .schedule-right-pane {
+      background: linear-gradient(145deg, rgba(11,107,58,0.35), rgba(0,224,198,0.12));
+      border: 1px solid var(--neon);
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .schedule-left-pane {
+      background: rgba(8, 28, 48, 0.65);
+      border: 1px solid rgba(201,162,39,0.45);
+      border-radius: 18px;
+      padding: 18px;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .timing-list {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .timing-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(14, 45, 76, 0.7);
+      border: 1px solid rgba(0, 224, 198, 0.22);
+      padding: 7px 14px;
+      border-radius: 10px;
+      margin-bottom: 0 !important;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .timing-list li:hover {
+      border-color: var(--neon);
+      transform: translateX(-3px);
+    }
+    .timing-list li.break-item {
+      background: rgba(201, 162, 39, 0.2);
+      border-color: rgba(201, 162, 39, 0.6);
+    }
+    .timing-list li strong {
+      color: var(--gold-light);
+    }
+    .timing-list li span {
+      color: var(--neon);
+      font-weight: 700;
+      direction: ltr;
     }
 
     /* شبكة بطاقات المبادرات التفاعلية داخل النافذة المنبثقة */
@@ -737,6 +789,15 @@
       .grid{
         grid-template-columns: repeat(3, 1fr);
         gap: 18px;
+      }
+    }
+    @media(max-width: 768px){
+      .schedule-split-layout {
+        grid-template-columns: 1fr;
+      }
+      .schedule-right-pane,
+      .schedule-left-pane {
+        position: static;
       }
     }
     @media(max-width:650px){
@@ -1167,7 +1228,7 @@ const sections = [
      </div>`},
 
   {iconKey:"awards", title:"الإنجازات والجوائز", sub:"لوحة شرف المدرسة",
-   content:``},
+   content:`<p style="text-align:center; padding:20px; color:#d7e3ee;">سيتم تحديث لوحة شرف المدرسة بأبرز الإنجازات والجوائز على مستوى المحافظة والسلطنة قريباً ✨</p>`},
 
   {iconKey:"exams", title:"جدول الاختبارات النهائية", sub:"مواعيد وضوابط الامتحانات",
    content:`
@@ -1183,44 +1244,53 @@ const sections = [
      <p>سيتم نشر تفاصيل جدول الاختبارات النهائية ومواعيد اللجان عبر البوابة التعليمية وقنوات التواصل الرسمية فور اعتمادها.</p>
    `},
 
-  {iconKey:"schedule", title:"الجدول المدرسي", sub:"الحصص والجدول العام للمعلمين",
+  {iconKey:"schedule", title:"الجدول المدرسي", sub:"الحصص والجدول العام للمعلمين", isWide: true,
    content:`
-     <!-- بطاقة رابط جدول المعلمين PDF المباشر -->
-     <div style="background:linear-gradient(135deg, rgba(11,107,58,0.35), rgba(0,224,198,0.15)); border:1px solid var(--neon); border-radius:14px; padding:16px; margin-bottom:18px; text-align:center;">
-       <span style="font-size:2.2rem; display:block; margin-bottom:6px;">📑</span>
-       <h4 style="color:var(--gold); margin-bottom:4px; font-size:1.15rem;">الجدول العام للمعلمين</h4>
-       <p style="font-size:0.9rem; color:#d7e3ee; margin-bottom:12px;">يمكنكم الاطلاع والتحميل المباشر لملف الجدول العام بصيغة PDF:</p>
-       <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-         <a href="https://moeom-my.sharepoint.com/:b:/r/personal/mohamed7732_moe_om/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D8%A7%D9%8A%D9%82%D9%88%D9%86%D8%A7%D8%AA%2F%D8%A7%D9%84%D8%AC%D8%AF%D9%88%D9%84%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%20%D9%84%D9%84%D9%85%D8%B9%D9%84%D9%85%D9%8A%D9%86%2Epdf&parent=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D8%A7%D9%8A%D9%82%D9%88%D9%86%D8%A7%D8%AA&share=cQq6IoB6LlyvTqWc0nYi3M1FEgUDvf9mi2%5FBQpGhaD%5F32mpFTQ" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin:0;">
-           👁️ فتح ومعاينة عبر OneDrive
-         </a>
-         <a href="https://moeom-my.sharepoint.com/personal/mohamed7732_moe_om/_layouts/15/download.aspx?share=cQq6IoB6LlyvTqWc0nYi3M1FEgUDvf9mi2%5FBQpGhaD%5F32mpFTQ" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin:0; background:linear-gradient(135deg, var(--gold), #ffde7a); color:#0a2540;">
-           📥 تحميل مباشر (PDF)
-         </a>
+     <div class="schedule-split-layout">
+       
+       <!-- الجهة اليمنى: الجدول العام للمعلمين -->
+       <div class="schedule-right-pane">
+         <span style="font-size:2.6rem; display:block; margin-bottom:8px;">📑</span>
+         <h4 style="color:var(--gold-light); margin-bottom:8px; font-size:1.2rem;">الجدول العام للمعلمين</h4>
+         <p style="font-size:0.92rem; color:#d7e3ee; margin-bottom:18px; line-height:1.7;">
+           يمكنكم الاطلاع المباشر أو تحميل نسخة الجدول المدرسي العام بصيغة PDF:
+         </p>
+         <div style="display:flex; flex-direction:column; gap:12px;">
+           <a href="https://moeom-my.sharepoint.com/:b:/r/personal/mohamed7732_moe_om/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D8%A7%D9%8A%D9%82%D9%88%D9%86%D8%A7%D8%AA%2F%D8%A7%D9%84%D8%AC%D8%AF%D9%88%D9%84%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%20%D9%84%D9%84%D9%85%D8%B9%D9%84%D9%85%D9%8A%D9%86%2Epdf&parent=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D8%A7%D9%8A%D9%82%D9%88%D9%86%D8%A7%D8%AA&share=cQq6IoB6LlyvTqWc0nYi3M1FEgUDvf9mi2%5FBQpGhaD%5F32mpFTQ" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin:0; justify-content:center;">
+             👁️ فتح ومعاينة عبر OneDrive
+           </a>
+           <a href="https://moeom-my.sharepoint.com/personal/mohamed7732_moe_om/_layouts/15/download.aspx?share=cQq6IoB6LlyvTqWc0nYi3M1FEgUDvf9mi2%5FBQpGhaD%5F32mpFTQ" target="_blank" rel="noopener noreferrer" class="btn-link" style="margin:0; justify-content:center; background:linear-gradient(135deg, var(--gold), #ffde7a); color:#0a2540;">
+             📥 تحميل مباشر (PDF)
+           </a>
+         </div>
        </div>
-     </div>
 
-     <hr style="border:none; border-top:1px solid rgba(0,224,198,0.25); margin:16px 0;">
+       <!-- الجهة اليسرى: توقيت الحصص ثابت -->
+       <div class="schedule-left-pane">
+         <h4 style="color:var(--gold-light); margin-bottom:12px; font-size:1.05rem; display:flex; align-items:center; gap:6px;">
+           ⏰ توقيت الحصص واليوم الدراسي
+         </h4>
+         <ul class="timing-list">
+           <li><strong>طابور الصباح</strong><span>٧:٢٠ – ٧:٣٥ ص</span></li>
+           <li><strong>الحصة الأولى</strong><span>٧:٣٥ – ٨:١٥ ص</span></li>
+           <li><strong>الحصة الثانية</strong><span>٨:٢٠ – ٩:٠٠ ص</span></li>
+           <li><strong>الحصة الثالثة</strong><span>٩:٠٥ – ٩:٤٥ ص</span></li>
+           <li><strong>الحصة الرابعة</strong><span>٩:٥٠ – ١٠:٣٠ ص</span></li>
+           <li class="break-item"><strong>☕ الفسحة</strong><span>١٠:٣٠ – ١٠:٥٥ ص</span></li>
+           <li><strong>الحصة الخامسة</strong><span>١٠:٥٥ – ١١:٣٥ ص</span></li>
+           <li><strong>الحصة السادسة</strong><span>١١:٤٠ – ١٢:٢٠ م</span></li>
+           <li><strong>الحصة السابعة</strong><span>١٢:٢٥ – ١:٠٥ م</span></li>
+           <li><strong>الحصة الثامنة</strong><span>١:١٠ – ١:٥٠ م</span></li>
+         </ul>
+       </div>
 
-     <h4 style="color:var(--gold); margin-bottom:10px;">⏰ توقيت الحصص واليوم الدراسي:</h4>
-     <ul>
-       <li><strong>طابور الصباح:</strong> ٧:٢٠ – ٧:٣٥ صباحاً</li>
-       <li><strong>الحصة الأولى:</strong> ٧:٣٥ – ٨:١٥ صباحاً</li>
-       <li><strong>الحصة الثانية:</strong> ٨:٢٠ – ٩:٠٠ صباحاً</li>
-       <li><strong>الحصة الثالثة:</strong> ٩:٠٥ – ٩:٤٥ صباحاً</li>
-       <li><strong>الحصة الرابعة:</strong> ٩:٥٠ – ١٠:٣٠ صباحاً</li>
-       <li><strong>الفسحة:</strong> ١٠:٣٠ – ١٠:٥٥ صباحاً</li>
-       <li><strong>الحصة الخامسة:</strong> ١٠:٥٥ – ١١:٣٥ صباحاً</li>
-       <li><strong>الحصة السادسة :</strong> ١١:٤٠ – ١٢:٢٠ ظهراً</li>
-       <li><strong>الحصة السابعة:</strong> ١٢:٢٥ – ١:٠٥ ظهراً</li>
-       <li><strong>الحصة الثامنة :</strong> ١:١٠ – ١:٥٠ ظهراً</li>
-     </ul>`},
+     </div>`},
 
   {iconKey:"gallery", title:"معرض الصور", sub:"توثيق الفعاليات المدرسية",
    content:`<p>معرض تفاعلي يوثق أنشطة المدرسة، التكريمات، والمسابقات الطلابية في مدرسة عباد بن بشر.</p>`},
 
   {iconKey:"activities", title:"الأنشطة الطلابية", sub:"المواهب والابتكارات",
-   content:``},
+   content:`<p style="text-align:center; padding:20px; color:#d7e3ee;">جماعات الأنشطة المدرسية والمسابقات العلمية والثقافية والرياضية لطلبة المدرسة 🌟</p>`},
 
   {iconKey:"contact", title:"تواصل معنا", sub:"قنوات الاتصال المباشرة",
    content:`
@@ -1259,6 +1329,12 @@ sections.forEach((s, i) => {
 
 /* التحكم بالنافذة المنبثقة */
 function openModal(i){
+  const modalBox = document.querySelector('.modal');
+  if (sections[i].isWide) {
+    modalBox.classList.add('wide-modal');
+  } else {
+    modalBox.classList.remove('wide-modal');
+  }
   const iconMarkup = `<span style="display:inline-block;width:34px;height:34px;vertical-align:middle;margin-left:8px;">${svgIcons[sections[i].iconKey]}</span>`;
   document.getElementById('modalTitle').innerHTML = `${iconMarkup} ${sections[i].title}`;
   document.getElementById('modalBody').innerHTML = sections[i].content;
@@ -1320,20 +1396,6 @@ function updateClock(){
 }
 updateClock();
 setInterval(updateClock, 1000);
-
-/* معالجة اختيار ملف خلفية الترويسة محلياً أو حفظه في الذاكرة التخزينية */
-function handleHeaderBgUpload(e) {
-  const file = e.target.files && e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(evt) {
-    const bgOverlay = document.getElementById('headerBgOverlay');
-    if (bgOverlay) {
-      bgOverlay.style.backgroundImage = `url('${evt.target.result}')`;
-    }
-  };
-  reader.readAsDataURL(file);
-}
 </script>
 </body>
 </html>
