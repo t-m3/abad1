@@ -638,6 +638,78 @@
       box-shadow:0 6px 25px rgba(0,224,198,0.55);
     }
 
+    /* شبكة بطاقات المبادرات التفاعلية داخل النافذة المنبثقة */
+    .initiatives-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:14px;
+      margin-top:16px;
+    }
+    .initiative-item{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      background:linear-gradient(145deg, rgba(16, 46, 78, 0.72), rgba(8, 26, 46, 0.88));
+      border:1px solid rgba(0,224,198,0.32);
+      border-radius:18px;
+      padding:16px;
+      text-decoration:none;
+      color:var(--cream);
+      transition:all .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow:0 8px 20px rgba(0,0,0,0.32), inset 0 1px 1px rgba(255,255,255,0.14);
+      position:relative;
+      overflow:hidden;
+    }
+    .initiative-item:hover{
+      transform:translateY(-5px) scale(1.015);
+      border-color:var(--neon);
+      box-shadow:0 14px 30px rgba(0,224,198,0.32), 0 0 16px rgba(201,162,39,0.2);
+      background:linear-gradient(145deg, rgba(20, 58, 96, 0.85), rgba(11, 36, 62, 0.95));
+    }
+    .initiative-top{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .initiative-icon{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      background:radial-gradient(circle at 35% 25%, rgba(255,255,255,0.2), rgba(0,224,198,0.16) 55%, rgba(6,25,44,0.92));
+      border:1.5px solid rgba(201,162,39,0.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.45rem;
+      flex-shrink:0;
+      box-shadow:0 4px 12px rgba(0,0,0,0.35), inset 0 0 10px rgba(0,224,198,0.2);
+      transition:transform .35s ease, border-color .35s ease;
+    }
+    .initiative-item:hover .initiative-icon{
+      transform:scale(1.1) rotate(-4deg);
+      border-color:var(--neon);
+    }
+    .initiative-title{
+      font-size:0.95rem;
+      font-weight:700;
+      line-height:1.55;
+      color:#f2f7fc;
+    }
+    .initiative-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding-top:10px;
+      border-top:1px solid rgba(0,224,198,0.18);
+      font-size:0.8rem;
+      font-weight:700;
+      color:var(--neon);
+    }
+    .initiative-item:hover .initiative-footer{
+      color:var(--gold-light);
+    }
+
     /* 5) التذييل */
     footer{
       text-align:center;
@@ -763,7 +835,7 @@
 
   <!-- الترويسة الرئيسية -->
   <header>
-    <div class="header-bg-art"></div>
+    <div class="header-bg-art" id="headerBgOverlay"></div>
     <div class="header-content">
       <div class="header-logo-wrap" id="headerLogoWrap">
         <img 
@@ -1024,19 +1096,78 @@ const sections = [
    </ul>`},
 
   {iconKey:"partnership", title:"المبادرات والشراكة المجتمعية", sub:"خدمة المجتمع والبيئة",
-   content:`<ul>
-     <li>مبادرات مجتمعية لتعزيز التحصيل الدراسي بالتعاون مع أولياء الأمور.</li>
-     <li>برامج التشجير وحماية البيئة المدرسية والمحلية.</li>
-     <li>مبادرة «تقنيّو المستقبل» لتدريب الطلاب على البرمجة والذكاء الاصطناعي.</li>
-     <li>حملات العمل التطوعي وتوثيق صلة الطالب بمجتمعه في ولاية عبري.</li>
-   </ul>`},
+   content:`
+     <p style="color:#d7e3ee; margin-bottom:12px;">نموذج حي للتكامل الفاعل بين المدرسة والمجتمع المحلي في ولاية عبري؛ اضغط على أي بطاقة للاطلاع على التغطية الإعلامية الكاملة عبر منصة <b>X</b>:</p>
+     <div class="initiatives-grid">
+       <a href="https://x.com/EduGovDhr7203/status/2120863118394056766?s=20" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">🎨</div>
+           <div class="initiative-title">المشاركة في ورشة الرسم ببلدة العراقي</div>
+         </div>
+         <div class="initiative-footer">
+           <span>𝕏 عرض التغطية والتفاصيل</span>
+           <span>↗</span>
+         </div>
+       </a>
+
+       <a href="https://x.com/EduGovDhr7203/status/2118570602491765065?a=JhjMONEQRBNepCWmT3Q&s=20" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">🤝</div>
+           <div class="initiative-title">اللقاء التربوي بين الهيئة التعليمية وأولياء الأمور</div>
+         </div>
+         <div class="initiative-footer">
+           <span>𝕏 عرض التغطية والتفاصيل</span>
+           <span>↗</span>
+         </div>
+       </a>
+
+       <a href="https://x.com/EduGovDhr7203/status/2115721914861949140?a=WmZfp2YnBSzJwOKNz-I&s=20" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">🌱</div>
+           <div class="initiative-title">زيارة استطلاعية إلى معرض يوم الزراعة في قاعة المهلب بن أبي صفرة</div>
+         </div>
+         <div class="initiative-footer">
+           <span>𝕏 عرض التغطية والتفاصيل</span>
+           <span>↗</span>
+         </div>
+       </a>
+
+       <a href="https://x.com/EduGovDhr7203/status/2115668971534037006?a=3RNi3n46MMxcFJLBZ7Y&s=20" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">🏛️</div>
+           <div class="initiative-title">زيارة استطلاعية إلى المكتشفات الأثرية بمنطقة العينين بولاية عبري</div>
+         </div>
+         <div class="initiative-footer">
+           <span>𝕏 عرض التغطية والتفاصيل</span>
+           <span>↗</span>
+         </div>
+       </a>
+
+       <a href="https://x.com/EduGovDhr7203/status/2112609176321220990?a=x1n-ZLtUzJCiGlMnYzU&s=20" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">🚦</div>
+           <div class="initiative-title">زيارة إلى معهد السلامة المرورية في محافظة الظاهرة</div>
+         </div>
+         <div class="initiative-footer">
+           <span>𝕏 عرض التغطية والتفاصيل</span>
+           <span>↗</span>
+         </div>
+       </a>
+
+       <a href="https://x.com/EduGovDhr7203/status/2110586048585793981?a=ceWcTRXn0vkek9LtIDs&s=20" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">👨‍👩‍👦‍👦</div>
+           <div class="initiative-title">اجتماع مع مجلس أولياء الأمور</div>
+         </div>
+         <div class="initiative-footer">
+           <span>𝕏 عرض التغطية والتفاصيل</span>
+           <span>↗</span>
+         </div>
+       </a>
+     </div>`},
 
   {iconKey:"awards", title:"الإنجازات والجوائز", sub:"لوحة شرف المدرسة",
-   content:`<ul>
-     <li>حصد مراكز متقدمة في مسابقات التنمية المعرفية والابتكارات العلمية على مستوى محافظة الظاهرة.</li>
-     <li>مراكز أولى في مسابقة حفظ وإتقان القرآن الكريم.</li>
-     <li>درع التميز في الأنشطة الطلابية والمسابقات الكشفية والرياضية.</li>
-   </ul>`},
+   content:``},
 
   {iconKey:"exams", title:"جدول الاختبارات النهائية", sub:"مواعيد وضوابط الامتحانات",
    content:`
@@ -1089,13 +1220,7 @@ const sections = [
    content:`<p>معرض تفاعلي يوثق أنشطة المدرسة، التكريمات، والمسابقات الطلابية في مدرسة عباد بن بشر.</p>`},
 
   {iconKey:"activities", title:"الأنشطة الطلابية", sub:"المواهب والابتكارات",
-   content:`<ul>
-     <li>نادي الروبوت والذكاء الاصطناعي.</li>
-     <li>النشاط الرياضي (دوري الفصول وتنس الطاولة والشطرنج).</li>
-     <li>الفرقة الموسيقية والفنون التشكيلية.</li>
-     <li>جماعة الإذاعة المدرسية والصحافة.</li>
-     <li>الفريق الكشفي والإرشادي.</li>
-   </ul>`},
+   content:``},
 
   {iconKey:"contact", title:"تواصل معنا", sub:"قنوات الاتصال المباشرة",
    content:`
