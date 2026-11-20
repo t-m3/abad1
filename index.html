@@ -400,15 +400,16 @@
       overflow: hidden;
       position: relative;
       white-space: nowrap;
-      padding: 9px 0;
+      padding: 9px 14px;
     }
     .ticker-content {
       display: inline-block;
       white-space: nowrap;
-      padding-left: 100%;
-      animation: tickerMove 28s linear infinite;
-      font-weight: 500;
-      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      padding-left: 0;
+      will-change: transform;
+      animation: tickerMove 72s linear infinite;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 2vw, 0.96rem);
       color: var(--cream);
     }
     .ticker-track:hover .ticker-content {
@@ -417,19 +418,22 @@
     }
     .ticker-content span {
       display: inline-block;
-      margin-right: 32px;
+      margin-right: 0;
     }
     .ticker-content span b {
       color: var(--gold-light);
-      font-weight: 700;
+      font-weight: 900;
     }
     .ticker-content span i {
       color: var(--neon);
       font-style: normal;
+      font-weight: 800;
     }
     @keyframes tickerMove {
       0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(100%, 0, 0); }
+      45% { transform: translate3d(55%, 0, 0); }
+      45.01% { transform: translate3d(-100%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
     }
 
     /* 3) شبكة الأيقونات التفاعلية بتصميم كبسولات زجاجية متطورة */
@@ -919,11 +923,7 @@
       <div class="ticker-badge">📢 إعلانات وتنبيهات</div>
       <div class="ticker-track">
         <div class="ticker-content">
-          <span>✨ <b>أهلاً وسهلاً</b> بجميع الطلبة وأولياء الأمور في مدرسة عباد بن بشر للتعليم الأساسي (٥-٩).</span>
-          <span>⏰ <b>تذكير:</b> يبدأ الطابور الصباحي في تمام الساعة <i>7:20 صباحاً</i> — نرجو الالتزام بالحضور المبكر.</span>
-          <span>👔 <b>الزي المدرسي:</b> نؤكد على أهمية الالتزام بالدشداشة العمانية والكمة تعزيزاً للهوية الوطنية.</span>
-          <span>📱 <b>التواصل الرسمي:</b> تابعوا أحدث الفعاليات والأنشطة عبر حسابنا الرسمي في منصة X.</span>
-          <span>📞 <b>هاتف المدرسة:</b> للرد على استفساراتكم يمكنكم التواصل على الرقم المباشر: <i>٢٢٤٩٥١٤٣</i>.</span>
+          <span>🇴🇲 <b>ترفع إدارة وأسرة مدرسة عباد بن بشر للتعليم الأساسي (٥-٩) أسمى آيات التهاني والتبريكات</b> بمناسبة <i>اليوم الوطني المجيد لسلطنة عُمان</i>، سائلين المولى عزّ وجل أن يديم على عُمان وقائدها المفدى وشعبها الوفي العزة والرفعة والازدهار.</span>
         </div>
       </div>
     </div>
@@ -1233,6 +1233,18 @@ const sections = [
   {iconKey:"exams", title:"جدول الاختبارات النهائية", sub:"مواعيد وضوابط الامتحانات",
    content:`
      <p>حرصاً على تنظيم العملية الاختبارية، نرفق لكم الإرشادات والجدول الزمني للاختبارات النهائية:</p>
+     <div class="initiatives-grid" style="margin:14px 0 18px;">
+       <a href="https://moeom-my.sharepoint.com/:b:/r/personal/mohamed7732_moe_om/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D9%85%D9%87%D8%A7%D9%85%20%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%2F%D8%AC%D8%AF%D8%A7%D9%88%D9%84%20%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B5%D9%81%D9%88%D9%81%20%285%20%E2%80%93%2011%29%2Epdf&parent=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D9%85%D9%87%D8%A7%D9%85%20%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%A3%D9%88%D9%84&share=cQprKOmjAnZ1SaGSfaCPLutSEgUDBtDthpntfs8ALRBTUFAvYg" target="_blank" rel="noopener noreferrer" class="initiative-item">
+         <div class="initiative-top">
+           <div class="initiative-icon">📝</div>
+           <div class="initiative-title">جدول الاختبارات النهائية (PDF)</div>
+         </div>
+         <div class="initiative-footer">
+           <span>📄 فتح ومعاينة جدول الاختبارات</span>
+           <span>↗</span>
+         </div>
+       </a>
+     </div>
      <div style="background:rgba(201,162,39,0.15); border:1px solid rgba(201,162,39,0.4); border-radius:12px; padding:14px; margin:14px 0;">
        <p style="margin:0; font-weight:700; color:var(--gold);">📌 تنبيهات هامة لأبنائنا الطلبة:</p>
        <ul style="margin-top:8px;">
@@ -1241,7 +1253,11 @@ const sections = [
          <li>يمنع تماماً إدخال الهواتف والساعات الذكية داخل قاعات الاختبار.</li>
        </ul>
      </div>
-     <p>سيتم نشر تفاصيل جدول الاختبارات النهائية ومواعيد اللجان عبر البوابة التعليمية وقنوات التواصل الرسمية فور اعتمادها.</p>
+     <div style="margin-top:12px;">
+       <a href="https://moeom-my.sharepoint.com/:b:/r/personal/mohamed7732_moe_om/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D9%85%D9%87%D8%A7%D9%85%20%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%2F%D8%AC%D8%AF%D8%A7%D9%88%D9%84%20%D8%A7%D9%85%D8%AA%D8%AD%D8%A7%D9%86%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B5%D9%81%D9%88%D9%81%20%285%20%E2%80%93%2011%29%2Epdf&parent=%2Fpersonal%2Fmohamed7732%5Fmoe%5Fom%2FDocuments%2F%D9%85%D9%87%D8%A7%D9%85%20%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%85%20%D8%A7%D9%84%D8%A3%D9%88%D9%84&share=cQprKOmjAnZ1SaGSfaCPLutSEgUDBtDthpntfs8ALRBTUFAvYg" target="_blank" rel="noopener noreferrer" class="btn-link">
+         📋 استعراض جدول الاختبارات النهائية
+       </a>
+     </div>
    `},
 
   {iconKey:"schedule", title:"الجدول المدرسي", sub:"الحصص والجدول العام للمعلمين", isWide: true,
